@@ -66,19 +66,19 @@ closedPorts = []
 
 for i in range(1, len(sys.argv)):
     # Default scan
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     for port in defaultPorts:
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client.settimeout(5)
         code = client.connect_ex((ip, port))
         if code == 0:
             openedPorts.append(port)
         else:
             closedPorts.append(port)
-    client.close()
 
     if sys.argv[i] == '-p':
         port = int(sys.argv[i+1])
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client.settimeout(10)
+        client.settimeout(1)
         code = client.connect_ex((ip, port))
         if code == 0:
             print 'Porta ' + str(port) + ': aberta'
