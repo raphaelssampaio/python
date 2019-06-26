@@ -61,42 +61,59 @@ defaultPorts = [1, 3, 4, 6, 7, 9, 13, 17, 19, 20, 21, 22, 23, 24, 25, 26, 30, 32
                 50003, 50006, 50300, 50389, 50500, 50636, 50800, 51103, 51493, 52673, 52822, 52848, 52869, 54045, 54328,
                 55055, 55056, 55555, 55600, 56737, 56738, 57294, 57797, 58080, 60020, 60443, 61532, 61900, 62078, 63331,
                 64623, 64680, 65000, 65129, 65389]
+# defaultPorts = [21, 22, 80, 443]
 openedPorts = []
 closedPorts = []
+banners = []
 
 for i in range(1, len(sys.argv)):
     # Default scan
     for port in defaultPorts:
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client.settimeout(5)
+        client.settimeout(0.6)
         code = client.connect_ex((ip, port))
         if code == 0:
             openedPorts.append(port)
+            try:
+                socket.setdefaulttimeout(0.6)
+                s = socket.socket()
+                s.connect((ip, port))
+                banner = s.recv(1024)
+                banners.append(banner)
+            except:
+                banners.append('Unknown')
         else:
             closedPorts.append(port)
 
     if sys.argv[i] == '-p':
         port = int(sys.argv[i+1])
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client.settimeout(1)
+        client.settimeout(0.6)
         code = client.connect_ex((ip, port))
+        print 'PORT \t STATUS \t SERVICE'
         if code == 0:
-            print 'Porta ' + str(port) + ': aberta'
+            print str(port) + ' \t open \t ' + banners[i]
         else:
-            print 'Porta ' + str(port) + ': fechada'
+            print str(port) + ' \t closed \t Unknown'
         client.close()
 
     elif sys.argv[i] == '-c':
-        print '----------- Portas fechadas ----------- '
+        print '----------- Closed Ports ----------- '
         for clPort in sorted(set(closedPorts)):
             print str(clPort)
 
     elif sys.argv[i] == '-o':
-        print '----------- Portas abertas ----------- '
+        print '----------- Opened Ports ----------- '
+        print 'PORT \t SERVICE'
         for opPort in set(openedPorts):
-            print 'Porta: ' + str(opPort)
+            print str(opPort) + ' \t ' + banners[openedPorts.index(opPort)]
 
 if len(sys.argv) == 2:
-    print '----------- Portas abertas ----------- '
-    for opPort in set(openedPorts):
-        print 'Porta: ' + str(opPort)
+    if len(openedPorts) != 0:
+        print '----------- Opened Ports ----------- '
+        print 'PORT \t SERVICE'
+        for opPort in set(openedPorts):
+            print str(opPort) + ' \t ' + banners[openedPorts.index(opPort)]
+    else:
+        print '----------- All ports are closed ----------- '
+
