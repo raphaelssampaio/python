@@ -13,10 +13,6 @@ scan = scanner.scan(host, port, arg)
 
 lp = scanner[host]['tcp'].keys()
 
-# port = int(port)
-#
-# print ('{} {}'.format(scanner[host]['tcp'][port]['product'], scanner[host]['tcp'][port]['version']))
-
 print('PORT\tSTATE\tSERVICE')
 for port in lp:
     state = scanner[host]['tcp'][port]['state']
