@@ -1,6 +1,7 @@
 import hashlib
 import sys
 
+
 def checker():
     files = [sys.argv[1], sys.argv[3]]
     enablemd5check = True
@@ -22,14 +23,13 @@ def checker():
             enablesha256check = False
             help()
 
-
     if enablemd5check:
         checkmd5 = giveMeMd5(files)
         if checkmd5[2]:
             print(' The files have the same MD5 hash: {}'.format(checkmd5[0]))
             print('-' * 60)
         else:
-            print(" The files don't have the same MD5 hash\n" + "-"*60 + "\n File 1: {} \t File 2: {} "
+            print(" The files don't have the same MD5 hash\n" + "-" * 60 + "\n File 1: {} \t File 2: {} "
                   .format(checkmd5[0], checkmd5[1]))
             print('-' * 100)
 
@@ -40,8 +40,8 @@ def checker():
             print('-' * 60)
         else:
             print(
-                " The files don't have the same SHA1 hash\n" + "-"*60 + "\n File 1: {} \t File 2: {} "
-                .format(checksha1[0], checksha1[1]))
+                    " The files don't have the same SHA1 hash\n" + "-" * 60 + "\n File 1: {} \t File 2: {} "
+                    .format(checksha1[0], checksha1[1]))
             print('-' * 92)
 
     elif enablesha256check:
@@ -50,7 +50,7 @@ def checker():
             print(' The files have the same SHA256 hash: {}'.format(checksha256[0]))
             print('-' * 60)
         else:
-            print(" The files don't have the same SHA256 hash\n" + "-"*60 + "\n File 1: {} \t File 2: {} "
+            print(" The files don't have the same SHA256 hash\n" + "-" * 60 + "\n File 1: {} \t File 2: {} "
                   .format(checksha256[0], checksha256[1]))
             print('-' * 94)
 
@@ -89,6 +89,7 @@ def giveMeMd5(files):
     hashmd5.append(hashmd5[0] == hashmd5[1])
     return hashmd5
 
+
 def giveMeSha1(files):
     hashsha1 = []
     for filename in files:
@@ -100,6 +101,7 @@ def giveMeSha1(files):
             hashsha1.append(s1)
     hashsha1.append(hashsha1[0] == hashsha1[1])
     return hashsha1
+
 
 def giveMeSha256(files):
     hashsha256 = []
@@ -126,9 +128,3 @@ if __name__ == '__main__':
         elif arg == '-h':
             help()
             break
-
-
-
-
-
-
