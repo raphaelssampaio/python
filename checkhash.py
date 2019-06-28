@@ -119,7 +119,7 @@ def giveMeSha256(files):
 if __name__ == '__main__':
 
     print('-' * 60)
-    print('\tDeveloped by Raphael Sampaio | SDG')
+    print('\tDeveloped by Raphael Sampaio | SDG | Linkedin: https://bit.ly/2RJr7Qd')
     print('-' * 60)
     for arg in sys.argv:
         if arg == '-c':
