@@ -125,6 +125,6 @@ if __name__ == '__main__':
         if arg == '-c':
             checker()
             break
-        elif arg == '-h':
+        else:
             help()
             break
