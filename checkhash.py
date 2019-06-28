@@ -30,26 +30,26 @@ def initial():
     if enablesha1check:
         checksha1 = giveMeSha1(files)
         if checksha1[2]:
-            print('-' * 100)
+            print('-' * 70)
             print('The files have the same SHA1 hash: {}'.format(checksha1[0]))
-            print('-' * 100)
+            print('-' * 70)
         else:
-            print('-' * 100)
+            print('-' * 92)
             print(
                 "The files don't have the same SHA1 hash\nFile 1: {} \t File 2: {} ".format(checksha1[0], checksha1[1]))
-            print('-' * 100)
+            print('-' * 92)
 
     if enablesha256check:
         checksha256 = giveMeSha256(files)
         if checksha256[2]:
-            print('-' * 100)
+            print('-' * 72)
             print('The files have the same SHA256 hash: {}'.format(checksha256[0]))
-            print('-' * 100)
+            print('-' * 72)
         else:
-            print('-' * 100)
+            print('-' * 94)
             print("The files don't have the same SHA256 hash\nFile 1: {} \t File 2: {} ".format(checksha256[0],
                                                                                                 checksha256[1]))
-            print('-' * 100)
+            print('-' * 94)
 
 def giveMeMd5(files):
     hashmd5 = []
