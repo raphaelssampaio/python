@@ -1,7 +1,7 @@
 import hashlib
 import sys
 
-def initial():
+def checker():
     files = [sys.argv[1], sys.argv[3]]
     enablemd5check = True
     enablesha1check = False
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     print('-' * 60)
     for arg in sys.argv:
         if arg == '-c':
-            initial()
+            checker()
             break
         elif arg == '-h':
             help()
