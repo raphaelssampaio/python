@@ -12,10 +12,10 @@ def checker():
         if sys.argv[i] == '-s1':
             enablesha1check = True
             enablemd5check = False
-        if sys.argv[i] == '-s2':
+        elif sys.argv[i] == '-s2':
             enablesha256check = True
             enablemd5check = False
-        if sys.argv[i] == '-h':
+        elif sys.argv[i] == '-h':
             enablemd5check = False
             enablesha1check = False
             enablesha256check = False
