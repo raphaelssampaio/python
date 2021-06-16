@@ -8,20 +8,18 @@ def checker():
     enablesha1check = False
     enablesha256check = False
 
-    for arg in sys.argv:
-        if arg == '-s1':
+    for i in range(0, len(sys.argv)):        
+        if sys.argv[i] == '-s1':
             enablesha1check = True
             enablemd5check = False
-
-        if arg == '-s2':
+        if sys.argv[i] == '-s2':
             enablesha256check = True
             enablemd5check = False
-
-        if arg == '-h':
+        if sys.argv[i] == '-h':
             enablemd5check = False
             enablesha1check = False
             enablesha256check = False
-            # help()
+            help()
 
     if enablemd5check:
         checkmd5 = giveMeMd5(files)
@@ -126,5 +124,5 @@ if __name__ == '__main__':
         if sys.argv[i] == '-c':
                 checker()
                 break
-        else:
+        elif sys.argv[i] == '-h':
             help()
