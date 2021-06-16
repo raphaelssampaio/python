@@ -21,7 +21,7 @@ def checker():
             enablemd5check = False
             enablesha1check = False
             enablesha256check = False
-            help()
+            # help()
 
     if enablemd5check:
         checkmd5 = giveMeMd5(files)
@@ -121,10 +121,10 @@ if __name__ == '__main__':
     print('-' * 60)
     print('\tDeveloped by Raphael Sampaio | SDG | Linkedin: https://bit.ly/2RJr7Qd')
     print('-' * 60)
-    for arg in sys.argv:
-        if arg == '-c':
-            checker()
-            break
+
+    for i in range(0, len(sys.argv)):
+        if sys.argv[i] == '-c':
+                checker()
+                break
         else:
             help()
-            break
